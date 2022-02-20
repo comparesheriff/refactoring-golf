@@ -13,28 +13,27 @@ public class PayslipTest {
 
     @Test
     public void taxOnAmountInLowerTaxBracketExcludesTaxFreeLimit() {
-        final Payslip payslip = new Payslip(10000, new TaxCalculator());
-        assertEquals(9500, payslip.getNet(), 1e-6);
+        assertTaxBasedOnGivenGross(10000, 9500);
 
-        final Payslip payslip2 = new Payslip(20000, new TaxCalculator());
-        assertEquals(18500, payslip2.getNet(), 1e-6);
+        assertTaxBasedOnGivenGross(20000, 18500);
     }
 
     @Test
     public void taxOnAmountInMiddleTaxBracketIsSumOfLowerTaxBracketAmountAndAdditionalMiddleTaxBracketAmount() {
-        final Payslip payslip = new Payslip(25000, new TaxCalculator());
-        assertEquals(22500, payslip.getNet(), 1e-6);
+        assertTaxBasedOnGivenGross(25000, 22500);
 
-        final Payslip payslip2 = new Payslip(40000, new TaxCalculator());
-        assertEquals(34500, payslip2.getNet(), 1e-6);
+        assertTaxBasedOnGivenGross(40000, 34500);
     }
 
     @Test
     public void taxOnAmountInUpperTaxBracketIsSumOfLowerTaxBracketAmountAndMiddleTaxBracketAmountAndAdditionalUpperTaxBracketAmount() {
-        final Payslip payslip = new Payslip(50000, new TaxCalculator());
-        assertEquals(40500, payslip.getNet(), 1e-6);
+        assertTaxBasedOnGivenGross(50000, 40500);
 
-        final Payslip payslip2 = new Payslip(60000, new TaxCalculator());
-        assertEquals(46500, payslip2.getNet(), 1e-6);
+        assertTaxBasedOnGivenGross(60000, 46500);
+    }
+
+    private void assertTaxBasedOnGivenGross(int grossSalary, int expected) {
+        final Payslip payslip = new Payslip(grossSalary, new TaxCalculator());
+        assertEquals(expected, payslip.getNet(), 1e-6);
     }
 }
