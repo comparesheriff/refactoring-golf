@@ -3,8 +3,8 @@ package payroll.hole01;
 public class Payslip {
     private final double salary;
 
-    public Payslip(final double slry) {
-        this.salary = slry;
+    public Payslip(final double salary) {
+        this.salary = salary;
     }
 
     public double getNet() {
