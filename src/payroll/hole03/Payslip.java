@@ -6,6 +6,7 @@ public class Payslip {
 
     public Payslip(final double grossSalary) {
         this.grossSalary = grossSalary;
+        taxCalculator = new TaxCalculator();
     }
 
     public double getNet() {
