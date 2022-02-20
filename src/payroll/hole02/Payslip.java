@@ -11,6 +11,10 @@ public class Payslip {
         final double lowerTaxBracketGross = Math.max(Math.min(grossSalary, 20000.0) - 5000, 0.0);
         final double middleTaxBracketGross = Math.max(Math.min(grossSalary, 40000) - 20000, 0.0);
         final double upperTaxBracketGross = Math.max(grossSalary - 40000, 0.0);
-        return grossSalary - (lowerTaxBracketGross * 0.1 + middleTaxBracketGross * 0.2 + upperTaxBracketGross * 0.4);
+        return grossSalary - calculateTax(lowerTaxBracketGross, middleTaxBracketGross, upperTaxBracketGross);
+    }
+
+    private double calculateTax(double lowerTaxBracketGross, double middleTaxBracketGross, double upperTaxBracketGross) {
+        return lowerTaxBracketGross * 0.1 + middleTaxBracketGross * 0.2 + upperTaxBracketGross * 0.4;
     }
 }
