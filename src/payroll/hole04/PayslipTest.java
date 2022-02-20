@@ -7,8 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class PayslipTest {
     @Test
     public void taxIsZeroIfGrossIsBelowTaxFreeLimit() {
-        Payslip payslip = new Payslip(5000, new TaxCalculator());
-        assertEquals(5000, payslip.getNet(), 1e-6);
+        assertTaxBasedOnGivenGross(5000, 5000);
     }
 
     @Test
